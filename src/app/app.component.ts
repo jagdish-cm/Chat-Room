@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'temp';
+  ngOnInit() {
+    document.body.classList.add('bg-img');
+  }
+  title = '7min Chat';
 }

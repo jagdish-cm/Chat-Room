@@ -1,0 +1,185 @@
+<div class="container">
+  <div class="row w-100 chat">
+    <div class="col-xl-8 col-md-12 chatbox">
+      <div class="row chathead align-items-center">
+        <div class="col align-middle  text-center  py-1" *ngIf="!selectedUser">
+          Welcome Aboard
+        </div>
+        <div class="col align-middle  text-center  py-1" *ngIf="selectedUser">
+          {{ selectedUser.username }}
+        </div>
+      </div>
+      <div class="row msgarea">
+        <div
+          class="col text-center h-25 m-5 p-4 justify-content-center smessage "
+          *ngIf="!selectedUser"
+        >
+          You are {{ currentUser.username }} from {{ currentUser.country }} and
+          your age is {{ currentUser.age }}
+        </div>
+        <div class="col text-left" *ngIf="selectedUser">
+          <cdk-virtual-scroll-viewport itemSize="100" style="height:100%">
+            <div class="row w-50" *ngFor="let msg of allmsgs">
+              <div
+                class="col smessage p-1 ml-4 mt-4"
+                *ngIf="msg.from == currentUser && msg.to == selectedUser"
+              >
+                {{ msg.content }}
+              </div>
+            </div>
+          </cdk-virtual-scroll-viewport>
+        </div>
+      </div>
+      <div class="row msgtype mx-auto align-items-center">
+        <div class="col">
+          <div>
+            <form
+              [formGroup]="chatForm"
+              class="form-inline"
+              (ngSubmit)="onSend()"
+            >
+              <input
+                type="text"
+                id="message"
+                autocomplete="off"
+                placeholder="Type your message here..."
+                formControlName="content"
+                class="form-control mr-2"
+              />
+              <button
+                class="btn btn-primary "
+                [disabled]="chatForm.invalid"
+                type="submit"
+              >
+                Send
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-4 col-md-12 onlinebox">
+      <div class="row onlinehead align-items-center">
+        <div class="col  text-center py-1">
+          Online
+        </div>
+      </div>
+
+      <div class="row ouNames">
+        <div class="col">
+          <cdk-virtual-scroll-viewport itemSize="200" style="height:100%">
+            <div
+              class="row  py-1"
+              style="width:80% "
+              *ngFor="let user of onlineUsers"
+            >
+              <div class="col">
+                <a
+                  [routerLink]=""
+                  [appStyleChanger]
+                  (click)="onClickUser(user)"
+                  *ngIf="selGender === user.gender"
+                  >{{ user.username }}</a
+                >
+                <a
+                  [routerLink]=""
+                  (click)="onClickUser(user)"
+                  *ngIf="selGender === 'All'"
+                  >{{ user.username }}</a
+                >
+              </div>
+            </div>
+          </cdk-virtual-scroll-viewport>
+        </div>
+      </div>
+
+      <div class="row serarchu mt-3 mb-2">
+        <div class="col">
+          <form [formGroup]="searchUser">
+            <input
+              type="text"
+              id="searchUser"
+              autocomplete="off"
+              placeholder="Search user"
+              formControlName="suser"
+              class="form-control mr-2"
+            />
+          </form>
+        </div>
+      </div>
+
+      <div class="row genderP">
+        <div class="col">
+          <form [formGroup]="gdPref">
+            <div class="row h-100  ">
+              <div class="col-4 d-flex justify-content-center pl-3">
+                <label class="radio-inline">
+                  <input
+                    type="radio"
+                    value="All"
+                    formControlName="selectedGender"
+                    checked
+                    (click)="changeGender('All')"
+                  />
+                  All
+                </label>
+              </div>
+              <div class="col-4 d-flex justify-content-center pl-3">
+                <label class="radio-inline">
+                  <input
+                    type="radio"
+                    value="Male"
+                    formControlName="selectedGender"
+                    (click)="changeGender('Male')"
+                  />
+                  Male
+                </label>
+              </div>
+              <div class="col-4 d-flex justify-content-center pl-3">
+                <label class="radio-inline">
+                  <input
+                    type="radio"
+                    value="Female"
+                    formControlName="selectedGender"
+                    (click)="changeGender('Female')"
+                  />
+                  Female
+                </label>
+              </div>
+
+              <!-- <div class="col">
+                <p-radioButton
+                  name="genderPref"
+                  formControlName="selectedGender"
+                  id="All"
+                  value="All"
+                  label="All"
+                  (click)="changeGender('All')"
+                  class="mr-4"
+                ></p-radioButton>
+                <p-radioButton
+                  name="genderPref"
+                  formControlName="selectedGender"
+                  value="male"
+                  id="male"
+                  (click)="changeGender('male')"
+                  label="Male"
+                  class="mr-4"
+                ></p-radioButton>
+                <p-radioButton
+                  name="genderPref"
+                  formControlName="selectedGender"
+                  (click)="changeGender('female')"
+                  value="female"
+                  id="female"
+                  label="Female"
+                ></p-radioButton>
+              </div> -->
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

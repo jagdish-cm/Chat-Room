@@ -1,0 +1,67 @@
+.chat {
+  height: 80vh;
+  min-height: 70vh;
+}
+
+.chatbox {
+  border: 2px #ff9005 solid;
+  height: 100%;
+}
+
+.onlinebox {
+  border: 2px #502214 solid;
+  height: 80vh;
+  background-color: rgb(49, 49, 49);
+  color: white;
+}
+
+a {
+  color: white;
+}
+
+.chathead {
+  background-color: #ff9005;
+  color: white;
+  height: 7%;
+  font-size: large;
+}
+
+.onlinehead {
+  background-color: #502214;
+  color: white;
+  font-size: large;
+  height: 7%;
+}
+
+a:hover {
+  color: rgb(74, 171, 255);
+  text-decoration: none;
+}
+
+.msgarea {
+  height: 65vh;
+}
+
+#message {
+  width: 80%;
+  max-width: 80%;
+}
+
+.genderP {
+  height: 10%;
+}
+
+.msgtype {
+  height: 10%;
+}
+
+.ouNames {
+  height: 61vh;
+}
+
+.smessage {
+  border: #ff9005 solid 1px;
+  border-radius: 2mm;
+  color: black;
+  background-color: white;
+}
