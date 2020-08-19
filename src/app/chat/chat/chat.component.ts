@@ -6,6 +6,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from '../../shared/message.service';
 import { Message } from '../../shared/message.model';
 
+
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
